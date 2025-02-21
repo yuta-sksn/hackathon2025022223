@@ -1,5 +1,5 @@
-import { createMeta } from '@/helpers/meta';
 import { AdobeFont } from '@/components/AdobeFont';
+import { createMeta } from '@/helpers/meta';
 
 import type { Metadata } from 'next';
 import './globals.css';

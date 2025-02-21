@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import parse, { domToReact, Element, Text } from 'html-react-parser';
+import Image from 'next/image';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
