@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        // Noto Sans CJK JP
+        notoSansCjkJp: ['noto-sans-cjk-jp', 'sans-serif']
+      },
     },
   },
   plugins: [],

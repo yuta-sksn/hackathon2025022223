@@ -14,6 +14,13 @@
   }
 }
 
+html {
+  visibility: hidden;
+}
+html.wf-active {
+  visibility: visible;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
