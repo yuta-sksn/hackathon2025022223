@@ -14,6 +14,7 @@ import {
   AuthFormValues,
   UseAuthFormRegisterReturns,
 } from '@/features/auth/types';
+import Link from 'next/link';
 
 type AuthFormPresentationalProps = {
   isRegister: boolean;
@@ -97,18 +98,21 @@ export default function AuthFormPresentational({
         />
 
         {/* Firebase 含むリソースサーバエラー表示 */}
-        <p className="mx-2 mt-2 text-center text-sm tracking-[0.12em] text-red-500">
-          {authErrorMessage}
-        </p>
+        {authErrorMessage !== '' && (
+          <p className="mx-2 mt-2 text-center text-sm tracking-[0.12em] text-red-500">
+            {authErrorMessage}
+          </p>
+        )}
 
         {/* 注釈 */}
-        {/* <p className={classes.presentationalAnnotation}>
-          本サービスを利用することにより、
+        <p className="text-center text-blue-600">
+          アカウントを持っていない方は
           <br />
-          <Link href="/terms">利用規約</Link>および
-          <Link href="/privacy">プライバシーポリシー</Link>
-          に同意したものとします。
-        </p> */}
+          <Link href="/account/register" className="underline">
+            こちら
+          </Link>
+          から登録してくさい。
+        </p>
       </form>
     </section>
   );

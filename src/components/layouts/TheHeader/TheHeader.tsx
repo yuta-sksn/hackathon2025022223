@@ -11,20 +11,20 @@ const TheHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navMenuItems = [
     {
-      text: 'HOME',
+      text: 'TOP',
       href: '/',
+    },
+    {
+      text: 'My Niche',
+      href: '/my-niche',
     },
     {
       text: 'About',
       href: '/about',
     },
     {
-      text: 'メニュー項目',
-      href: '/hogehoge',
-    },
-    {
-      text: 'メニュー項目',
-      href: '/fugafuga',
+      text: 'Login',
+      href: '/account/login',
     },
   ];
 
@@ -56,14 +56,14 @@ const TheHeader = () => {
   return (
     <>
       {/* ヘッダー */}
-      <header className="fixed top-0 z-[51] h-16 w-full bg-[#666666] px-6 pt-2 max-sm:pb-2 sm:relative">
+      <header className="fixed top-0 z-[51] h-16 w-full bg-blue-500 px-6 pt-2 max-sm:pb-2 sm:relative">
         <div className="relative flex h-full items-center">
           {/* ハンバーガーメニューアイコン */}
           <button
             aria-label="メニューを開く"
             aria-expanded="false"
             aria-controls="navigation"
-            className="relative left-0 block sm:hidden"
+            className="absolute right-0 block sm:hidden"
             onClick={handleOnTapToggle}
           >
             <span className="sr-only">メニュー</span>
@@ -132,7 +132,10 @@ const TheHeader = () => {
       >
         <ul className="flex flex-col justify-center text-center text-sm sm:flex-row sm:text-left">
           {navMenuItems.map((item, index) => (
-            <li key={`nav-menu-${index}`} className="mx-4 py-2">
+            <li
+              key={`nav-menu-${index}`}
+              className="mx-4 py-2 max-sm:first-of-type:pt-4"
+            >
               <Link
                 href={item.href}
                 className={navMenuLinkTwClasses(item.href)}

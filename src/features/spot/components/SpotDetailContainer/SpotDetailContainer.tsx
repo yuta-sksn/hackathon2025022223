@@ -125,7 +125,7 @@ export default function SpotDetailContainer() {
       {/* スタンプ取得ボタン */}
       <div className="flex justify-center">
         <button
-          className="flex h-10 items-center justify-center rounded-lg bg-blue-600 px-4 text-white"
+          className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white"
           onClick={handlePushStamp}
         >
           スタンプ取得
