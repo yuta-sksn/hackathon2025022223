@@ -10,18 +10,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       // ジモニッチ Assets
-      {
-        protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_ASSETS_HOSTNAME || '',
-        port: '',
-        pathname: '/uploads/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'placehold.jp',
-        port: '',
-        pathname: '/**',
-      },
+      // {
+      //   protocol: 'https',
+      //   hostname: process.env.NEXT_PUBLIC_ASSETS_HOSTNAME || '',
+      //   port: '',
+      //   pathname: '/uploads/**',
+      // },
     ],
   },
 };

@@ -4,16 +4,16 @@ import PasswordResetForm from '@/features/auth/components/PasswordResetForm/Pass
 import classes from '@/styles/page.module.scss';
 import { classNames } from '@/helpers/classNames';
 import { Metadata } from 'next';
-import { defaultCanonical } from '@/helpers/meta';
+// import { defaultCanonical } from '@/helpers/meta';
 
-export const metadata: Metadata = {
-  title: 'パスワード再設定',
-  ...defaultCanonical('/account/password/reset'),
-  openGraph: null,
-  robots: {
-    index: false, // noindexの設定
-  },
-};
+// export const metadata: Metadata = {
+//   title: 'パスワード再設定',
+//   ...defaultCanonical('/account/password/reset'),
+//   openGraph: null,
+//   robots: {
+//     index: false, // noindexの設定
+//   },
+// };
 
 export default function Home() {
   return (
