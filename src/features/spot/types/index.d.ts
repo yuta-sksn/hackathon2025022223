@@ -16,22 +16,20 @@ export type UseSearchSpotsRegisterReturns = {
  * Data Object
  */
 
-export type spotObject = {
-  address: string;
-  bannerImageUrl: string | null;
-  description: string;
+export type SpotObject = {
+  id: number;
   name: string;
-  nameEn: string;
-  nameKana: string;
-  thumbnailImageUrl: string | null;
-  url: string;
-  uuid: string;
+  latitude: number;
+  longitude: number;
+  address: string;
+  numberOfVisits: number;
+  isVisited: boolean;
 };
 
-export type spot = spotObject;
+export type Spot = SpotObject;
 
 export type Spots = {
-  objects: spotObject[];
+  nicheSpots: SpotObject[];
   pagination: {
     currentPage: number;
     isLastPage: boolean;
@@ -46,22 +44,20 @@ export type Spots = {
  * Response
  */
 
-export type spotObjectResponse = {
-  address: string;
-  banner_image_url: string | null;
-  description: string;
+export type SpotObjectResponse = {
+  id: number;
   name: string;
-  name_en: string;
-  name_kana: string;
-  thumbnail_image_url: string | null;
-  url: string;
-  uuid: string;
+  latitude: number;
+  longitude: number;
+  address: string;
+  number_of_visits: number;
+  is_visited?: boolean;
 };
 
-export type spotResponse = spotObjectResponse;
+export type SpotResponse = SpotObjectResponse;
 
 export type SpotsResponse = {
-  objects: spotObjectResponse[];
+  niche_spots: SpotObjectResponse[];
   pagination: {
     current_page: number;
     is_last_page: boolean;

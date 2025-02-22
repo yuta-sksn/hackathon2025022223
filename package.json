@@ -26,6 +26,7 @@
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "swiper": "^11.2.4",
+    "swr": "^2.3.2",
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
