@@ -5,11 +5,13 @@ import 'swiper/css';
 import { Pagination, Mousewheel, EffectCube } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import useSyncSpot from '../../api/useSyncSpot';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import usePostStamp from '@/features/stamp/api/usePostStamp';
+import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
 
 export default function SpotDetailContainer() {
-  const searchParams = useSearchParams();
   const { spot_id: spotId } = useParams<{ spot_id: string }>();
+  const { user } = useAuthContext();
 
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
@@ -38,14 +40,12 @@ export default function SpotDetailContainer() {
     data: spot,
     error: useSyncSpotError,
     isLoading: useSyncSpotIsLoading,
-  } = useSyncSpot(Number(spotId));
+    // @ts-ignore
+  } = useSyncSpot(user ? user.accessToken : null, Number(spotId));
 
   useEffect(() => {
     console.log(spot);
   }, [spot]);
-
-  // スライダーモック
-  const data: string[] = ['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4'];
 
   // スライダー次へボタン
   const SlideNextButton = () => {
@@ -75,8 +75,16 @@ export default function SpotDetailContainer() {
     );
   };
 
-  const handlePushStamp = () => {
-    alert('スタンプ押すよ！');
+  const useHandlePushStamp = async () => {
+    const result = await usePostStamp(
+      {
+        // @ts-ignore
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+      Number(spotId),
+    );
+
+    console.log(result);
   };
 
   return (
@@ -84,8 +92,8 @@ export default function SpotDetailContainer() {
       {/* タイトル (おとずれた数) / スタンプ */}
       <div className="flex items-center justify-start">
         {/* タイトル (おとずれた数) */}
-        <div className="w-[calc(100%-64px)]">
-          <h2 className="text-2xl">{spot?.name || ''}</h2>
+        <div className="flex w-[calc(100%-64px)] flex-col gap-y-1">
+          <h2 className="text-2xl font-bold">{spot?.name || ''}</h2>
           <p className="text-sm">{spot?.numberOfVisits || 0} Visited</p>
         </div>
         {/* スタンプ */}
@@ -108,7 +116,7 @@ export default function SpotDetailContainer() {
             spaceBetween={50}
             centeredSlides={true}
             slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
+            onSlideChange={(swiper) => console.log(swiper)}
             onSwiper={(swiper) => console.log(swiper)}
             pagination={{
               type: 'fraction',
@@ -149,7 +157,7 @@ export default function SpotDetailContainer() {
       <div className="flex justify-center">
         <button
           className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white"
-          onClick={handlePushStamp}
+          onClick={useHandlePushStamp}
         >
           スタンプ取得
         </button>

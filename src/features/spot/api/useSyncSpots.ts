@@ -8,6 +8,7 @@ import { Spots, SpotsResponse } from '@/features/spot/types';
  * @returns {SWRResponse<Universities | null | void, FetchRequestError, boolean>}
  */
 const useSyncSpots = (
+  accessToken: string | null,
   perPage: number = 3,
   page?: number,
   keyword?: string,
@@ -24,9 +25,23 @@ const useSyncSpots = (
     queryParams.keyword = keyword;
   }
 
+  const headers = {
+    'ngrok-skip-browser-warning': 'true',
+    'Content-Type': 'application/json',
+  } as { [key: string]: string };
+
+  if (accessToken) {
+    headers['Authorization'] = `Bearer ${accessToken}`;
+  }
+
   return useSWR(
-    `/api/niche_spot?${new URLSearchParams(queryParams).toString()}`,
-    fetcher<SpotsResponse, Spots>,
+    [
+      `/api/niche_spot?${new URLSearchParams(queryParams).toString()}`,
+      'GET',
+      headers,
+    ],
+    ([url, method, headers]) =>
+      fetcher<SpotsResponse, Spots>(url, method, headers),
   );
 };
 

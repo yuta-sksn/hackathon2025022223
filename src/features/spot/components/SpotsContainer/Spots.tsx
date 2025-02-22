@@ -13,9 +13,12 @@ import SearchField from '@/components/elements/SearchField/SearchField';
 import dynamic from 'next/dynamic';
 import useSyncSpots from '../../api/useSyncSpots';
 import Link from 'next/link';
+import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
 // import NicheMap from '@/components/elements/NicheMap/NicheMap';
 
 export default function SearchSpotsContainer() {
+  const { user } = useAuthContext();
+
   const NicheMap = useMemo(
     () =>
       dynamic(() => import('@/components/elements/NicheMap/NicheMap'), {
@@ -69,7 +72,13 @@ export default function SearchSpotsContainer() {
     data: spots,
     error: useSyncSpotsError,
     isLoading: useSyncSpotsIsLoading,
-  } = useSyncSpots(3, currentSpotsPage, keyword);
+  } = useSyncSpots(
+    // @ts-ignore
+    user ? user.accessToken : null,
+    3,
+    currentSpotsPage,
+    keyword,
+  );
 
   // ニッチスポットの Object に関する useEffect
   useEffect(() => {
