@@ -19,8 +19,13 @@ export type UseSearchSpotsRegisterReturns = {
 export type SpotObject = {
   id: number;
   name: string;
+  comment: string;
   latitude: number;
   longitude: number;
+  imageList: {
+    imageId: number;
+    imagePath: string;
+  }[];
   address: string;
   numberOfVisits: number;
   isVisited: boolean;
@@ -47,8 +52,13 @@ export type Spots = {
 export type SpotObjectResponse = {
   id: number;
   name: string;
+  comment: string;
   latitude: number;
   longitude: number;
+  image_list: {
+    image_id: number;
+    image_path: string;
+  }[];
   address: string;
   number_of_visits: number;
   is_visited?: boolean;
