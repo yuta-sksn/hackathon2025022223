@@ -5,7 +5,7 @@ import { Spots, SpotsResponse } from '@/features/spot/types';
 /**
  * ニッチスポット一覧を API から購読する
  *
- * @returns {SWRResponse<Universities | null | void, FetchRequestError, boolean>}
+ * @returns {SWRResponse<Spots | null | void, FetchRequestError, boolean>}
  */
 const useSyncSpots = (
   accessToken: string | null,

@@ -8,6 +8,8 @@ import useSyncSpot from '../../api/useSyncSpot';
 import { useParams } from 'next/navigation';
 import usePostStamp from '@/features/stamp/api/usePostStamp';
 import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
+import useSyncStamp from '@/features/stamp/api/useSyncStamp';
+import { toast } from 'react-toastify';
 
 export default function SpotDetailContainer() {
   const { spot_id: spotId } = useParams<{ spot_id: string }>();
@@ -40,12 +42,18 @@ export default function SpotDetailContainer() {
     data: spot,
     error: useSyncSpotError,
     isLoading: useSyncSpotIsLoading,
+    mutate: useSyncSpotMutate,
     // @ts-ignore
   } = useSyncSpot(user ? user.accessToken : null, Number(spotId));
 
-  useEffect(() => {
-    console.log(spot);
-  }, [spot]);
+  // スタンプ情報を API から購読
+  const {
+    data: stamp,
+    error: useSyncStampError,
+    isLoading: useSyncStampIsLoading,
+    mutate: useSyncStampMutate,
+    // @ts-ignore
+  } = useSyncStamp(user ? user.accessToken : null, Number(spotId));
 
   // スライダー次へボタン
   const SlideNextButton = () => {
@@ -75,8 +83,13 @@ export default function SpotDetailContainer() {
     );
   };
 
+  const notify = () =>
+    toast.info('スタンプゲット！', {
+      icon: false,
+    });
+
   const useHandlePushStamp = async () => {
-    const result = await usePostStamp(
+    await usePostStamp(
       {
         // @ts-ignore
         Authorization: `Bearer ${user.accessToken}`,
@@ -84,7 +97,10 @@ export default function SpotDetailContainer() {
       Number(spotId),
     );
 
-    console.log(result);
+    useSyncSpotMutate();
+    useSyncStampMutate();
+
+    notify();
   };
 
   return (
@@ -101,7 +117,7 @@ export default function SpotDetailContainer() {
           <img
             src={'/images/ashiato.svg'}
             alt={'スタンプ'}
-            className={`h-3/4 w-auto ${spot?.isVisited ? '!opacity-100' : 'opacity-0'}`}
+            className={`w-auto transition-opacity duration-300 ${stamp?.isExistStamp ? 'h-3/4 !opacity-100' : 'h-[500%] opacity-0'}`}
           ></img>
         </div>
       </div>
