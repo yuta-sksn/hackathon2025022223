@@ -36,20 +36,18 @@ export default function AuthFormContainer({
       },
     });
 
-  // @TODO: Firebase 側でパスワード強度の設定が確定したら以下も変更 (メールアドレスで使用不可文字などのバリデーションも)
   const authFormRegisterReturns: UseAuthFormRegisterReturns = {
     email: register('email', {
-      required: 'emailを入力してください。',
+      required: 'メールアドレスを入力してください。',
     }),
     password: register('password', {
-      required: 'passwordを入力してください。',
+      required: 'パスワードを入力してください。',
     }),
   };
 
   const authErrorMessage = useRef('');
 
   const handleOnSubmit: SubmitHandler<AuthFormValues> = async (values) => {
-    console.log('aaaa');
     // Firebase Authentication 認証処理
     const { success, message, user } = await doAuthByFirebase(
       isRegister,

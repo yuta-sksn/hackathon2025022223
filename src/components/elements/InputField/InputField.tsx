@@ -69,7 +69,7 @@ const InputField = ({
                 ref(e);
                 inputRef.current = e;
               }}
-              className={classNames(classes.inputField, className)}
+              className="block w-full rounded-lg border border-[#B3B3B3] bg-white px-4 py-2"
               placeholder={label}
               {...props}
             />
@@ -85,7 +85,7 @@ const InputField = ({
                   inputRef.current = e;
                 }}
                 type={showPassword ? 'text' : 'password'}
-                className={classNames(classes.inputField, className)}
+                className="block w-full rounded-lg border border-[#B3B3B3] bg-white px-4 py-2"
                 placeholder={label}
                 {...props}
               />
