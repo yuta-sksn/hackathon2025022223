@@ -54,8 +54,6 @@ export default function AuthFormContainer({
       values,
     );
 
-    console.log(user);
-
     // Firebase Authentication の認証に成功した場合
     if (success) {
       // ジモニッチ API 認証処理

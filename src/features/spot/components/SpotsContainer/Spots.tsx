@@ -145,17 +145,19 @@ export default function SearchSpotsContainer() {
       </div>
       {/* ニッチスポット一覧 */}
       <div className="w-full">
-        <h3 className="mb-2 text-xl">ニッチスポット一覧</h3>
+        <h3 className="mb-2 text-xl">みんなのニッチスポット</h3>
         <table className="w-full bg-white">
           <thead>
             <tr className="border-b">
               <th className="px-4 py-2 text-center text-gray-700">
                 スポット名
               </th>
-              <th className="w-32 px-4 py-2 text-center text-gray-700">
+              <th className="w-16 px-4 py-2 text-center text-gray-700">
                 訪問人数
               </th>
-              <th className="w-20 px-4 py-2 text-center text-gray-700">足跡</th>
+              <th className="w-32 px-4 py-2 text-center text-gray-700">
+                行った！
+              </th>
             </tr>
           </thead>
           <tbody>
