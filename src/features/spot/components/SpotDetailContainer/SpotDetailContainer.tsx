@@ -23,7 +23,7 @@ export default function SpotDetailContainer() {
   };
 
   useEffect(() => {
-    setInterval(() => {
+    const id = setInterval(() => {
       getLocation();
     }, 3000);
   }, []);

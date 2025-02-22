@@ -262,7 +262,7 @@ export const doAuthByResource = async (
   assertIsDefined(apiBaseUrl);
   // Fetch API でリクエストを送信
   const result = await fetch(
-    `${apiBaseUrl}${isRegister ? '/v1/account/signup' : '/v1/account/login'}`,
+    `${apiBaseUrl}${isRegister ? '/api/user' : '/api/login'}`,
     init,
   )
     .then(async (res: Response) => {
