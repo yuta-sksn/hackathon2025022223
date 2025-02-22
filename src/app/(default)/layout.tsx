@@ -9,7 +9,7 @@ export default function DefaultLayout({
   return (
     <>
       <TheHeader />
-      <div className="flex-1 max-sm:pt-[54px]">{children}</div>
+      <div className="flex-1 max-sm:pt-16">{children}</div>
       <TheFooter />
     </>
   );

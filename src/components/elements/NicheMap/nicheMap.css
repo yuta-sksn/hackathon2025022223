@@ -1,0 +1,9 @@
+/* 地図を画面全体に表示 */
+.leaflet-container {
+  @apply z-[1] h-64 max-h-96 w-full sm:h-screen;
+}
+
+/* 通常カーソル */
+.leaflet-grab {
+  cursor: auto;
+}

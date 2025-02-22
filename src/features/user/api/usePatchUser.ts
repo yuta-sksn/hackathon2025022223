@@ -27,8 +27,9 @@ const usePatchUser = async (
       ...headers,
     },
     body: JSON.stringify({
-      last_education_university_name: patchUserRequestParams.lastEducationUniversityName,
-      last_education_faculty_name: patchUserRequestParams.lastEducationFacultyName,
+      last_education_spot_name: patchUserRequestParams.lastEducationspotName,
+      last_education_faculty_name:
+        patchUserRequestParams.lastEducationFacultyName,
       last_education_start_at: patchUserRequestParams.lastEducationStartAt,
       last_education_end_at: patchUserRequestParams.lastEducationEndAt,
     }),
@@ -38,22 +39,22 @@ const usePatchUser = async (
       if (!res.ok) {
         throw {
           errObj: new Error(res.statusText),
-          response: await res.json()
-        }
+          response: await res.json(),
+        };
       }
 
-      return res.json()
+      return res.json();
     })
     .catch((err) => {
       // FetchRequestError を catch
-      const fetchError = err as FetchRequestError
+      const fetchError = err as FetchRequestError;
       // エラー処理 (エラーをログに出力したり、Sentry に通知する)
       console.error(fetchError.errObj);
       // 呼び出し元にエラーレスポンスをスローする
       throw fetchError;
     });
 
-  return responseToModelObject(result)
-}
+  return responseToModelObject(result);
+};
 
 export default usePatchUser;

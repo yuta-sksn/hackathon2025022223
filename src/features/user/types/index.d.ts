@@ -1,22 +1,22 @@
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 export type PatchUserFormValues = {
-  lastEducationUniversityName: string;
+  lastEducationspotName: string;
   lastEducationFacultyName: string;
   lastEducationStartAt: string;
   lastEducationEndAt: string;
-}
+};
 
 export type UsePatchUserFormRegisterReturns = {
-  lastEducationUniversityName: UseFormRegisterReturn<'lastEducationUniversityName'>
-  lastEducationFacultyName: UseFormRegisterReturn<'lastEducationFacultyName'>
-  lastEducationStartAt: UseFormRegisterReturn<'lastEducationStartAt'>
-  lastEducationEndAt: UseFormRegisterReturn<'lastEducationEndAt'>
-}
+  lastEducationspotName: UseFormRegisterReturn<'lastEducationspotName'>;
+  lastEducationFacultyName: UseFormRegisterReturn<'lastEducationFacultyName'>;
+  lastEducationStartAt: UseFormRegisterReturn<'lastEducationStartAt'>;
+  lastEducationEndAt: UseFormRegisterReturn<'lastEducationEndAt'>;
+};
 
 export type PatchUserRequest = {
-  lastEducationUniversityName: string;
+  lastEducationspotName: string;
   lastEducationFacultyName: string;
   lastEducationStartAt: string;
   lastEducationEndAt: string;
-}
+};

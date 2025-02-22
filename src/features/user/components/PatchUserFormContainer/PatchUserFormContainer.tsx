@@ -23,8 +23,7 @@ export default function PatchUserFormContainer() {
       mode: 'onSubmit',
       reValidateMode: 'onChange',
       defaultValues: {
-        lastEducationUniversityName:
-          userByRecoil.lastEducationUniversityName ?? '',
+        lastEducationspotName: userByRecoil.lastEducationspotName ?? '',
         lastEducationFacultyName: userByRecoil.lastEducationFacultyName ?? '',
         lastEducationStartAt: userByRecoil.lastEducationStartAt ?? '',
         lastEducationEndAt: userByRecoil.lastEducationEndAt ?? '',
@@ -32,7 +31,7 @@ export default function PatchUserFormContainer() {
     });
 
   const patchUserFormRegisterReturns: UsePatchUserFormRegisterReturns = {
-    lastEducationUniversityName: register('lastEducationUniversityName'),
+    lastEducationspotName: register('lastEducationspotName'),
     lastEducationFacultyName: register('lastEducationFacultyName'),
     lastEducationStartAt: register('lastEducationStartAt'),
     lastEducationEndAt: register('lastEducationEndAt'),
@@ -54,7 +53,7 @@ export default function PatchUserFormContainer() {
         Authorization: `Bearer ${userByFirebase.accessToken}`,
       },
       {
-        lastEducationUniversityName: values.lastEducationUniversityName,
+        lastEducationspotName: values.lastEducationspotName,
         lastEducationFacultyName: values.lastEducationFacultyName,
         lastEducationStartAt: values.lastEducationStartAt,
         lastEducationEndAt: values.lastEducationEndAt,

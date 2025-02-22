@@ -56,14 +56,14 @@ const TheHeader = () => {
   return (
     <>
       {/* ヘッダー */}
-      <header className="fixed top-0 z-[51] w-screen bg-white px-6 pt-2 max-sm:pb-2 sm:relative">
-        <div className="relative flex items-center justify-center py-0 sm:py-12">
+      <header className="fixed top-0 z-[51] h-16 w-full bg-[#666666] px-6 pt-2 max-sm:pb-2 sm:relative">
+        <div className="relative flex h-full items-center">
           {/* ハンバーガーメニューアイコン */}
           <button
             aria-label="メニューを開く"
             aria-expanded="false"
             aria-controls="navigation"
-            className="absolute left-0 block sm:hidden"
+            className="relative left-0 block sm:hidden"
             onClick={handleOnTapToggle}
           >
             <span className="sr-only">メニュー</span>
@@ -81,7 +81,7 @@ const TheHeader = () => {
               >
                 <path
                   d="M3 12H21M3 6H21M3 18H21"
-                  stroke="#1f2937"
+                  stroke="#fff"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -101,7 +101,7 @@ const TheHeader = () => {
               >
                 <path
                   d="M18 6L6 18M6 6L18 18"
-                  stroke="#1f2937"
+                  stroke="#fff"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -114,7 +114,7 @@ const TheHeader = () => {
           <Link href="/" onClick={handleOnTapLink}>
             {/* <Image
               src="/images/logo.jpg"
-              alt="サービス名"
+              alt="ジモニッチ"
               width="340"
               height="102"
               className="w-32 sm:w-full"
@@ -127,7 +127,7 @@ const TheHeader = () => {
       <nav
         className={twMerge(
           'fixed z-50 bg-white py-3 text-gray-800 transition-all duration-500 ease-in-out max-sm:w-full max-sm:pt-0 sm:sticky sm:top-0',
-          isMenuOpen ? 'top-[54px]' : 'top-[-100%]',
+          isMenuOpen ? 'top-16' : 'top-[-100%]',
         )}
       >
         <ul className="flex flex-col justify-center text-center text-sm sm:flex-row sm:text-left">

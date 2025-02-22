@@ -43,17 +43,19 @@ export default function PatchUserFormPresentational({
   return (
     <section className={classes.presentationalSection}>
       <form onSubmit={handleSubmit(handleOnSubmit, handleOnError)}>
-        {/* 所属大学 */}
+        {/* 所属スポット */}
         <div className={classes.presentationalFormGroupBox}>
-          <label className={classes.presentationalFormLabel}>所属大学</label>
+          <label className={classes.presentationalFormLabel}>
+            所属スポット
+          </label>
           <InputField
-            label="大学名"
-            register={patchUserFormRegisterReturns.lastEducationUniversityName}
+            label="スポット名"
+            register={patchUserFormRegisterReturns.lastEducationspotName}
             setValue={setValue}
             className="!max-w-lg"
           />
           <p className={classes.presentationalErrorMessage}>
-            {formState.errors.lastEducationUniversityName?.message}
+            {formState.errors.lastEducationspotName?.message}
           </p>
         </div>
 

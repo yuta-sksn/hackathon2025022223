@@ -1,8 +1,5 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { classNames } from '@/helpers/classNames';
-
-import classes from './SearchField.module.scss';
 
 type SearchFieldProps = {
   label: string;
@@ -24,11 +21,7 @@ const SearchField = ({
   return (
     <input
       id={register.name}
-      className={classNames(
-        classes.searchField,
-        classes.placeholderStyle,
-        className,
-      )}
+      className="h-12 w-full min-w-80 px-4 shadow-[0_2px_5px_rgba(0,0,0,0.26)]"
       placeholder={label}
       {...register}
       {...props}
