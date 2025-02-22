@@ -1,12 +1,16 @@
 'use client';
 
-import Image from 'next/image';
+import { doLogout } from '@/features/auth/api/auth';
+import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const TheHeader = () => {
+  const { user } = useAuthContext();
+
+  const router = useRouter();
   const navigationPath = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navMenuItems = [
@@ -51,6 +55,18 @@ const TheHeader = () => {
     setTimeout(() => {
       setIsMenuOpen(false);
     }, 200);
+  };
+
+  const handleTapLogout = () => {
+    if (!user) return;
+
+    // ログアウト
+    doLogout(user);
+
+    setTimeout(() => {
+      // TOP に遷移
+      router.push('/');
+    }, 300);
   };
 
   return (
@@ -131,20 +147,32 @@ const TheHeader = () => {
         )}
       >
         <ul className="flex flex-col justify-center text-center text-sm sm:flex-row sm:text-left">
-          {navMenuItems.map((item, index) => (
-            <li
-              key={`nav-menu-${index}`}
-              className="mx-4 py-2 max-sm:first-of-type:pt-4"
-            >
-              <Link
-                href={item.href}
-                className={navMenuLinkTwClasses(item.href)}
-                onClick={handleOnTapLink}
+          {navMenuItems.map((item, index) => {
+            if (item.href.includes('login') && user) return <></>;
+
+            return (
+              <li
+                key={`nav-menu-${index}`}
+                className="mx-4 py-2 max-sm:first-of-type:pt-4"
               >
-                {item.text}
-              </Link>
+                <Link
+                  href={item.href}
+                  className={navMenuLinkTwClasses(item.href)}
+                  onClick={handleOnTapLink}
+                >
+                  {item.text}
+                </Link>
+              </li>
+            );
+          })}
+          {user && (
+            <li
+              className="mx-4 cursor-pointer py-2 max-sm:first-of-type:pt-4"
+              onClick={handleTapLogout}
+            >
+              Logout
             </li>
-          ))}
+          )}
         </ul>
       </nav>
 

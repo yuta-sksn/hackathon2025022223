@@ -3,6 +3,7 @@ import { createMeta } from '@/helpers/meta';
 import type { Metadata } from 'next';
 import './globals.css';
 import { AdobeFont } from '@/components/layouts/AdobeFont';
+import { AuthProvider } from '@/features/auth/components/AuthProvider/AuthProvider';
 
 export const metadata: Metadata = { ...createMeta() };
 
@@ -16,7 +17,9 @@ export default function RootLayout({
       <head>
         <AdobeFont />
       </head>
-      <body className="font-notoSansCjkJp">{children}</body>
+      <body className="font-notoSansCjkJp">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
