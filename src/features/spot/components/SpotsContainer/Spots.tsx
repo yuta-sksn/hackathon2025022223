@@ -141,6 +141,7 @@ export default function SearchSpotsContainer() {
               ? undefined
               : { lat: latitude, lng: longitude }
           }
+          nicheSpots={spots?.nicheSpots}
         />
       </div>
       {/* ニッチスポット一覧 */}
