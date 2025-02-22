@@ -104,82 +104,90 @@ export default function SpotDetailContainer() {
   };
 
   return (
-    <article className="mx-auto flex w-[calc(100%-24px*2)] max-w-2xl flex-col gap-y-4 pb-16 pt-8">
-      {/* タイトル (おとずれた数) / スタンプ */}
-      <div className="flex items-center justify-start">
-        {/* タイトル (おとずれた数) */}
-        <div className="flex w-[calc(100%-64px)] flex-col gap-y-1">
-          <h2 className="text-2xl font-bold">{spot?.name || ''}</h2>
-          <p className="text-sm">{spot?.numberOfVisits || 0} Visited</p>
-        </div>
-        {/* スタンプ */}
-        <div className="flex size-16 items-center justify-center rounded-full border">
-          <img
-            src={'/images/ashiato.svg'}
-            alt={'スタンプ'}
-            className={`w-auto transition-opacity duration-300 ${stamp?.isExistStamp ? 'h-3/4 !opacity-100' : 'h-[500%] opacity-0'}`}
-          ></img>
-        </div>
-      </div>
-      {/* 住所 */}
-      <div className="flex">
-        <p className="text-base">住所: {spot?.address || ''}</p>
-      </div>
-      {/* 画像 (スライダー) */}
-      {spot?.imageList && spot?.imageList.length > 0 && (
-        <div className="flex w-full">
-          <Swiper
-            spaceBetween={50}
-            centeredSlides={true}
-            slidesPerView={1}
-            onSlideChange={(swiper) => console.log(swiper)}
-            onSwiper={(swiper) => console.log(swiper)}
-            pagination={{
-              type: 'fraction',
-            }}
-            modules={[Pagination, Mousewheel, EffectCube]}
-            // effect="cube"
-          >
-            {spot.imageList.map((image, i) => (
-              <SwiperSlide key={i} className="h-64 max-h-96 w-full sm:h-screen">
-                <div className="flex h-64 max-h-96 w-full items-center overflow-y-hidden bg-gray-400 sm:h-screen">
-                  <img
-                    src={
-                      image.imagePath.includes('localhost')
-                        ? image.imagePath.replace(
-                            'http://localhost',
-                            process.env.NEXT_PUBLIC_API_BASE_URL as string,
-                          )
-                        : image.imagePath
-                    }
-                    alt={'スポットの画像'}
-                    className="h-auto w-full object-cover object-center align-top"
-                  ></img>
-                </div>
-              </SwiperSlide>
-            ))}
-            <SlidePrevButton />
-            <SlideNextButton />
-          </Swiper>
-        </div>
-      )}
+    <>
+      {spot && (
+        <article className="mx-auto flex w-[calc(100%-24px*2)] max-w-2xl flex-col gap-y-4 pb-16 pt-8">
+          {/* タイトル (おとずれた数) / スタンプ */}
+          <div className="flex items-center justify-start">
+            {/* タイトル (おとずれた数) */}
+            <div className="flex w-[calc(100%-64px)] flex-col gap-y-1">
+              <h2 className="text-2xl font-bold">{spot?.name || ''}</h2>
+              <p className="text-sm">{spot?.numberOfVisits || 0} Visited</p>
+            </div>
+            {/* スタンプ */}
+            <div className="flex size-16 items-center justify-center rounded-full border">
+              <img
+                src={'/images/ashiato.svg'}
+                alt={'スタンプ'}
+                className={`w-auto transition-opacity duration-300 ${stamp?.isExistStamp ? 'h-3/4 !opacity-100' : 'h-[500%] opacity-0'}`}
+              ></img>
+            </div>
+          </div>
+          {/* 住所 */}
+          <div className="flex">
+            <p className="text-base">住所: {spot?.address || ''}</p>
+          </div>
+          {/* 画像 (スライダー) */}
+          {spot?.imageList && spot?.imageList.length > 0 && (
+            <div className="flex w-full">
+              <Swiper
+                spaceBetween={50}
+                centeredSlides={true}
+                slidesPerView={1}
+                onSlideChange={(swiper) => console.log(swiper)}
+                onSwiper={(swiper) => console.log(swiper)}
+                pagination={{
+                  type: 'fraction',
+                }}
+                modules={[Pagination, Mousewheel, EffectCube]}
+                // effect="cube"
+              >
+                {spot.imageList.map((image, i) => (
+                  <SwiperSlide
+                    key={i}
+                    className="h-64 max-h-96 w-full sm:h-screen"
+                  >
+                    <div className="flex h-64 max-h-96 w-full items-center overflow-y-hidden bg-gray-400 sm:h-screen">
+                      <img
+                        src={
+                          image.imagePath.includes('localhost')
+                            ? image.imagePath.replace(
+                                'http://localhost',
+                                process.env.NEXT_PUBLIC_API_BASE_URL as string,
+                              )
+                            : image.imagePath
+                        }
+                        alt={'スポットの画像'}
+                        className="h-auto w-full object-cover object-center align-top"
+                      ></img>
+                    </div>
+                  </SwiperSlide>
+                ))}
+                <SlidePrevButton />
+                <SlideNextButton />
+              </Swiper>
+            </div>
+          )}
 
-      {/* 投稿者のコメント */}
-      <div className="mb-4">
-        <h3 className="mb-2 text-xl">投稿者のコメント</h3>
-        <p>{spot?.comment || ''}</p>
-      </div>
-      {/* スタンプ取得ボタン */}
-      {user && (
-        <div className="flex justify-center">
-          <button
-            className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white"
-            onClick={useHandlePushStamp}
-          >
-            スタンプ取得
-          </button>
-        </div>
+          {/* 投稿者のコメント */}
+          <div className="mb-4">
+            <h3 className="mb-2 text-xl">投稿者のコメント</h3>
+            <p>{spot?.comment || ''}</p>
+          </div>
+          {/* スタンプ取得ボタン */}
+          {user && (
+            <div className="flex justify-center">
+              <button
+                className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white disabled:opacity-50"
+                onClick={useHandlePushStamp}
+                disabled={stamp?.isExistStamp}
+              >
+                {stamp?.isExistStamp ? '取得済み' : 'スタンプ取得'}
+              </button>
+            </div>
+          )}
+        </article>
       )}
-    </article>
+    </>
   );
 }
