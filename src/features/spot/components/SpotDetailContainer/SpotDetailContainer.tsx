@@ -3,8 +3,31 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
 import { Pagination, Mousewheel, EffectCube } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
 export default function SpotDetailContainer() {
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition);
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const setPosition = (position: GeolocationPosition) => {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      getLocation();
+    }, 3000);
+  }, []);
+
   // スライダーモック
   const data: string[] = ['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4'];
 

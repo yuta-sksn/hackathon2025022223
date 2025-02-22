@@ -27,6 +27,28 @@ export default function SearchSpotsContainer() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition);
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const setPosition = (position: GeolocationPosition) => {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      getLocation();
+    }, 3000);
+  }, []);
+
   // const [isSearched, setIsSearched] = useState(false);
   // const [isSubmit, setIsSubmit] = useState(false);
 
@@ -102,7 +124,13 @@ export default function SearchSpotsContainer() {
       />
       {/* マップ */}
       <div className="mb-4 w-full">
-        <NicheMap />
+        <NicheMap
+          centerPosition={
+            !latitude || !longitude
+              ? undefined
+              : { lat: latitude, lng: longitude }
+          }
+        />
       </div>
       {/* ニッチスポット一覧 */}
       <div className="w-full">
