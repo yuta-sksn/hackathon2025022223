@@ -1,0 +1,36 @@
+@tailwind utilities;
+
+@layer utilities {
+  .imageSelectorFieldContainer {
+    @apply w-full max-w-lg h-auto ;
+  }
+
+  .imageSelectorFieldThumbnailContainer {
+    @apply relative inline-block rounded mr-2 w-14 h-14 bg-cover ;
+  }
+
+  .imageSelectorFieldThumbnail {
+    @apply w-14 h-14 object-contain object-center ;
+  }
+
+  .imageSelectorFieldThumbnailDelete {
+    @apply absolute w-4 h-4 top-1 right-1 ;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, .9));
+
+    &::after {
+      @apply relative block w-full h-full;
+      content: '';
+      background-color: white;
+      -webkit-mask-image: url('/images/icons/close.png');
+      mask-image: url('/images/icons/close.png');
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+    }
+  }
+
+  .imageSelectorFieldAddImageLabel {
+    @apply inline-block w-14 h-14 bg-cover cursor-pointer align-top ;
+    background-image: url('/images/icons/add_image.png');
+  }
+}

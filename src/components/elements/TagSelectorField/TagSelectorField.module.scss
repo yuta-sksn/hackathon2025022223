@@ -1,0 +1,31 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .tagSelectorField {
+    @apply ml-[-0.25rem];
+
+    &Checkbox {
+      @apply hidden;
+
+      &Label {
+        @apply inline-block rounded-full m-1 px-3 py-1.5 text-xs cursor-pointer;
+        color: colors.$subColor;
+        border: 1px solid colors.$subColor;
+        background-color: none;
+        transition: 0.2s ease-in-out;
+      }
+
+      &:checked + .tagSelectorFieldCheckboxLabel {
+        @apply text-white;
+        background-color: colors.$subColor;
+      }
+
+      &:disabled + .tagSelectorFieldCheckboxLabel {
+        @apply cursor-default;
+        opacity: 0.5;
+      }
+    }
+  }
+}

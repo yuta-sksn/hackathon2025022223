@@ -1,0 +1,97 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .presentationalSection {
+    @apply w-full max-w-lg mx-auto sm:pt-7 pt-6;
+  }
+
+  .presentationalFormTitle {
+    @apply relative text-xl mb-6 mx-4 font-semibold text-white tracking-[0.08em];
+
+    &::after {
+      @apply top-0 right-0 absolute inline-block z-0;
+      right: calc(0px - 8rem);
+      width: calc(395px * 0.8);
+      height: calc(366px * 0.8);
+      @media (max-width: 639px) {
+        right: calc(0px - 4rem) !important;
+      }
+      @media (max-width: 559px) {
+        width: calc(395px * 0.7);
+        height: calc(366px * 0.7);
+      }
+      @media (max-width: 499px) {
+        width: calc(395px * 0.6);
+        height: calc(366px * 0.6);
+        right: calc(0px - 3rem) !important;
+      }
+      @media (max-width: 449px) {
+        width: calc(395px * 0.5);
+        height: calc(366px * 0.5);
+      }
+
+      content: '';
+      background-image: url('/images/mv_image1.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    > span {
+      @apply inline-block px-2 py-1;
+      background-color: colors.$mainColor;
+    }
+  }
+
+  .presentationalForm {
+    @apply relative z-10 px-4;
+    &GroupBox {
+      @apply mb-8 px-8;
+
+      &:last-of-type {
+        @apply mb-0
+      }
+
+      &Unity {
+        @apply mb-4;
+
+        &:last-of-type {
+          @apply mb-2;
+        }
+      }
+    }
+
+    &Label {
+      @apply block mb-2 text-sm tracking-[0.12em];
+      color: colors.$mainColor;
+
+      &Annotation {
+        @apply text-xs;
+      }
+    }
+  }
+
+  .presentationalErrorMessage {
+    @apply ml-2 text-red-500 text-sm tracking-[0.12em];
+  }
+
+  .presentationalAuthErrorMessage {
+    @apply mt-2 mx-2 text-red-500 text-sm text-center tracking-[0.12em];
+  }
+
+  .presentationalForgetPassword,
+  .presentationalAnnotation {
+    @apply text-center my-2 sm:text-sm sp:text-xs text-[10px] tracking-[0.08em];
+    color: colors.$mainColor;
+
+    > a {
+      @apply underline;
+    }
+  }
+
+  .presentationalAnnotation {
+    @apply mt-16 mb-24;
+  }
+}

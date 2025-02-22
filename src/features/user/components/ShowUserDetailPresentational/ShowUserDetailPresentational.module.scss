@@ -1,0 +1,53 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .presentational {
+    &Dl {
+      @apply w-full max-w-lg mx-auto sm:text-base text-sm my-6;
+
+      > hr {
+        border-top-width: 2px;
+        border-color: colors.$thinMainColor;
+      }
+
+      &Group,
+      &GroupLink {
+        @apply relative flex flex-wrap mb-1 px-8 py-6 bg-white;
+
+        > dt {
+          @apply relative flex-[2] tracking-[0.12em];
+          color: colors.$mainColor;
+
+          > span {
+            @apply absolute inline-block left-0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        > dd {
+          @apply flex-[1] text-right tracking-[0.08em];
+          color: colors.$subColor;
+        }
+      }
+
+      &GroupLink {
+        &::after {
+          content: '';
+          @apply absolute inline-block align-middle w-4 h-4 right-2 ;
+          z-index: 20;
+          top: 50%;
+          transform: translateY(-50%);
+          background-size: contain;
+          background-image: url('/images/icons/right_arrow.svg');
+        }
+      }
+    }
+
+    &EducationAt {
+      @apply text-sm;
+    }
+  }
+}

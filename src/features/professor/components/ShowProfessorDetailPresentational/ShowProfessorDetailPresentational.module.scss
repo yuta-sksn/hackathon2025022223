@@ -1,0 +1,47 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .presentationalSection {
+
+    &Summary {
+      @apply sm:py-7 py-6 w-full;
+      background-color: colors.$thinMainColor;
+
+      &Box {
+        @apply px-4 max-w-5xl w-full mx-auto;
+      }
+    }
+
+    &Reviews {
+      @apply sm:py-7 py-6;
+
+      &Box {
+        @apply px-4 max-w-5xl w-full mx-auto;
+      }
+
+      &Title {
+        @apply mb-2 text-sm font-semibold tracking-[0.12em];
+        color: colors.$mainColor;
+      }
+
+      &NoReview {
+        @apply text-center;
+        color: colors.$mainColor;
+      }
+    }
+  }
+
+  .loginModal {
+    &Annotation {
+      @apply text-center text-sm mb-8 xsp:tracking-[0.12em] tracking-[0.1em];
+      color: colors.$mainColor;
+    }
+
+    &PleaseRegister {
+      @apply text-center text-xs;
+      color: colors.$mainColor;
+    }
+  }
+}

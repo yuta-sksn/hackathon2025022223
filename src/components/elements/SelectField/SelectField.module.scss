@@ -1,0 +1,27 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .selectField {
+
+    @apply relative inline-flex items-center w-full max-w-lg rounded-lg ;
+
+    &::after {
+      @apply absolute pointer-events-none ;
+      right: 12.5px;
+      width: 14px;
+      height: 11px;
+      background-color: colors.$subColor;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      content: '';
+  }
+
+    select {
+      @apply border rounded-lg p-2 px-3 text-sm cursor-pointer tracking-[0.08em];
+      border-color: colors.$subColor;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

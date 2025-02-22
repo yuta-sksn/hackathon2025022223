@@ -1,0 +1,31 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .textareaFieldLabel {
+    @apply block text-sm mb-2 tracking-[0.12em];
+    color: colors.$mainColor;
+  }
+
+  .textareaFieldContainer {
+    @apply relative ;
+  }
+
+  .textareaField {
+    @apply relative block resize-none border rounded-lg p-4 w-full max-w-lg text-sm tracking-[0.06em];
+    border-color: colors.$accentColor;
+    box-shadow: 0 4px 10px rgba(0, 7, 150, 0.18) inset;
+
+    &:disabled {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+  }
+
+  .textareaFieldPlaceholder {
+    @apply absolute cursor-text p-4 text-sm tracking-[0.06em];
+    color: colors.$placeholderColor;
+    top: 0;
+  }
+}

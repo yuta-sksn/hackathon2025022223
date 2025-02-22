@@ -1,0 +1,113 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .myReviewBox {
+    @apply pb-4;
+
+    &Details {
+      @apply mt-4 sm:ml-16 sp:text-left text-center;
+
+      > p {
+        &:nth-of-type(2) {
+          @apply mx-2.5;
+        }
+      }
+
+      &Difficulty,
+      &Assignment,
+      &Attendance {
+        @apply inline-block text-white sp:text-xs text-[10px] px-3 py-2 rounded-lg;
+        background-color: colors.$subColor;
+      }
+    }
+  }
+
+  .myReviewBoxWrap {
+    @apply relative p-4 rounded-lg;
+    background-color: colors.$thinMainColor;
+
+    &::after {
+      @apply absolute block w-11 h-11 right-0;
+      content: '';
+      background-image: url('/images/balloon_tail.svg');
+      transform: scaleX(-1);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .myReviewBoxRate {
+    @apply relative;
+  }
+
+  .myReviewBoxRateNum {
+    @apply absolute inline-block text-3xl bg-white px-[0.925rem] pt-2 pb-1 font-medium rounded-lg w-12 h-12 text-center;
+    color: colors.$mainColor;
+    font-family: 'Din1451AltG';
+  }
+
+  .myReviewBoxContainer {
+    @apply relative ml-16;
+  }
+
+  .myReviewBoxStarRating {
+    @apply relative align-middle mt-2.5 ml-[-0.2rem] mb-5;
+
+    &ActiveStar,
+    &InactiveStar {
+      @apply inline-block align-middle w-7 h-6;
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+    }
+
+    &ActiveStar {
+      background-color: colors.$subColor;
+      -webkit-mask-image: url('/images/icons/mortar_board_active.png');
+      mask-image: url('/images/icons/mortar_board_active.png');
+    }
+
+    &InactiveStar {
+      background-color: white;
+      -webkit-mask-image: url('/images/icons/mortar_board_no_active.png');
+      mask-image: url('/images/icons/mortar_board_no_active.png');
+    }
+  }
+
+  .myReviewBoxTitleProfessorName {
+    @apply mb-1 text-base font-bold tracking-[0.12em];
+    color: colors.$mainColor;
+  }
+
+  .myReviewBoxUniversityFaculty {
+    @apply text-[0.9rem] font-medium tracking-[0.12em];
+    color: colors.$mainColor;
+  }
+
+  .myReviewBoxLecture {
+    @apply text-xs font-medium tracking-[0.12em];
+    color: colors.$subColor;
+  }
+
+  .myReviewBoxText {
+    @apply text-xs overflow-hidden mt-5 tracking-[0.12em];
+    color: colors.$mainColor;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    whitespace: pre-wrap
+    // -webkit-line-clamp: 5;
+  }
+
+  .myReviewBoxTextReadMore {
+    @apply text-sm underline tracking-[0.12em];
+    color: colors.$mainColor;
+  }
+
+  .myReviewBoxDate {
+    @apply absolute text-sm text-right top-0 right-0 mt-4 mr-6 tracking-[0.12em];
+    color: colors.$mainColor;
+  }
+}

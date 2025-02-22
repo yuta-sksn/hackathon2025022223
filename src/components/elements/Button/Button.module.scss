@@ -1,0 +1,20 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .button {
+    @apply border rounded-lg px-2 py-1 w-full max-w-56 h-11 text-white font-semibold tracking-[0.16em];
+    background-color: colors.$mainColor;
+    border-bottom: solid 5px colors.$subColor;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+  }
+}

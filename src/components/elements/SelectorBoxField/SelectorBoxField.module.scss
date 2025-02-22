@@ -1,0 +1,26 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .selectorBoxField {
+    @apply flex rounded-lg text-sm;
+    border: solid 1px colors.$subColor;
+
+    &Radio {
+      @apply hidden;
+
+      &:checked + .selectorBoxFieldLabel {
+        background-color: colors.$subColor;
+        color: white;
+      }
+    }
+
+    &Label {
+      @apply block flex-1 py-[0.565rem] text-center cursor-pointer;
+      border-radius: 7px;
+      color: colors.$subColor;
+      transition: 0.2s ease-in-out;
+    }
+  }
+}

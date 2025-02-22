@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+@layer utilities {
+  .pageContentsContainer {
+    @apply max-w-5xl mx-auto px-4 w-full flex-1;
+  }
+}

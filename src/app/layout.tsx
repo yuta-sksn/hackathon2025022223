@@ -1,8 +1,8 @@
-import { AdobeFont } from '@/components/AdobeFont';
 import { createMeta } from '@/helpers/meta';
 
 import type { Metadata } from 'next';
 import './globals.css';
+import { AdobeFont } from '@/components/layouts/AdobeFont';
 
 export const metadata: Metadata = { ...createMeta() };
 
@@ -15,7 +15,6 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <AdobeFont />
-        <p></p>
       </head>
       <body className="font-notoSansCjkJp">{children}</body>
     </html>

@@ -1,0 +1,67 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .baseModalWrapper {
+    @apply fixed top-0 right-0 bottom-0 left-0 text-center py-10 px-4 ;
+    z-index: 999;
+
+    &::after {
+      @apply inline-block h-full align-middle ;
+      margin-left: -.05em;
+      content: "";
+    }
+
+    &IsClose {
+      @apply opacity-0 invisible ;
+      transition: opacity .3s, visibility .3s;
+    }
+
+    &IsOpen {
+      @apply opacity-100 visible ;
+      transition: opacity .3s, visibility .3s;
+    }
+  }
+
+  .baseModalWindow {
+    @apply box-border inline-block z-20 relative rounded-lg align-middle bg-white w-full max-w-lg pt-2.5 px-7 pb-6 ;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+  }
+
+  .baseModalContent {
+    @apply overflow-y-auto text-left ;
+    max-height: 80vh;
+
+    p {
+      @apply mt-2.5 ;
+    }
+  }
+
+  .baseModalTitle {
+    @apply relative overflow-hidden p-0 text-xl text-center font-semibold tracking-[0.08em];
+    color: colors.$mainColor;
+  }
+
+  .baseModalAnnotation {
+    @apply text-sm ;
+    color: #999999;
+
+    > br {
+      @media (max-width: 381px) { @apply hidden ; }
+    }
+  }
+
+  .baseModalOverlay {
+    @apply z-10 absolute top-0 right-0 bottom-0 left-0 ;
+    background: rgba(0, 0, 0, .8);
+  }
+
+  .baseModalClose {
+    @apply z-20 absolute w-8 text-3xl font-medium leading-9 text-center no-underline cursor-pointer ;
+    color: colors.$subColor !important;
+    top: 5px;
+    right: 5px;
+    text-indent: 0;
+  }
+}

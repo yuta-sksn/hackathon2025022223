@@ -1,0 +1,21 @@
+@use "@/styles/colors.module" as colors;
+
+@tailwind utilities;
+
+@layer utilities {
+  .submitField {
+    @apply block border rounded-lg px-2 py-1 w-full max-w-56 mx-auto h-11 text-white font-semibold tracking-[0.16em];
+    background-color: colors.$mainColor;
+    border-bottom: solid 5px colors.$subColor;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+  }
+}
