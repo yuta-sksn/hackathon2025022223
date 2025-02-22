@@ -40,7 +40,7 @@ export default function AuthFormPresentational({
   const submitButtonLabel = isRegister ? '登録' : 'ログイン';
 
   return (
-    <section className="mx-auto w-full max-w-lg pt-10">
+    <section className="mx-auto w-full max-w-lg pt-20 sm:pt-10">
       <h2 className="mb-8 text-center text-2xl">
         <span>{formTitle}</span>
       </h2>

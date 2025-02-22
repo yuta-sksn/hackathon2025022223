@@ -2,9 +2,7 @@
 
 import { InputHTMLAttributes, ReactNode, useEffect, useRef } from 'react';
 import { UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form';
-import { classNames } from '@/helpers/classNames';
 
-import classes from './InputField.module.scss';
 import React from 'react';
 
 type InputFieldProps = {
@@ -89,7 +87,7 @@ const InputField = ({
                 placeholder={label}
                 {...props}
               />
-              <span
+              {/* <span
                 className={classNames(
                   classes.showPassword,
                   showPassword
@@ -97,7 +95,7 @@ const InputField = ({
                     : classes.showPasswordOff,
                 )}
                 onClick={handleTapShowPassword}
-              />
+              /> */}
             </>
           );
         }
