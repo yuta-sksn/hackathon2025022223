@@ -170,14 +170,16 @@ export default function SpotDetailContainer() {
         <p>{spot?.comment || ''}</p>
       </div>
       {/* スタンプ取得ボタン */}
-      <div className="flex justify-center">
-        <button
-          className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white"
-          onClick={useHandlePushStamp}
-        >
-          スタンプ取得
-        </button>
-      </div>
+      {user && (
+        <div className="flex justify-center">
+          <button
+            className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white"
+            onClick={useHandlePushStamp}
+          >
+            スタンプ取得
+          </button>
+        </div>
+      )}
     </article>
   );
 }
