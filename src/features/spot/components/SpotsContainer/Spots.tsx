@@ -170,7 +170,7 @@ export default function SearchSpotsContainer() {
               <th className="px-4 py-2 text-center text-gray-700">
                 スポット名
               </th>
-              <th className="w-16 px-4 py-2 text-center text-gray-700">
+              <th className="px-4 py-2 text-center text-gray-700 max-sm:w-16">
                 訪問人数
               </th>
               <th className="w-32 px-4 py-2 text-center text-gray-700">

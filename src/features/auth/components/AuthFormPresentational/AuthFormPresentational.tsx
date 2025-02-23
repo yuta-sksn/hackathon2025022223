@@ -105,10 +105,10 @@ export default function AuthFormPresentational({
         )}
 
         {/* 注釈 */}
-        <p className="text-center text-blue-600">
+        <p className="text-center">
           アカウントを持っていない方は
           <br />
-          <Link href="/account/register" className="underline">
+          <Link href="/account/register" className="underline　text-blue-600">
             こちら
           </Link>
           から登録してくさい。
