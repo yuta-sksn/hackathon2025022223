@@ -270,9 +270,11 @@ export default function SpotDetailContainer() {
                   {stamp?.isExistStamp ? '取得済み' : 'スタンプ取得'}
                 </button>
               </div>
-              <p className="mt-2 text-center text-sm tracking-[0.12em] text-red-500">
-                {texts[index]}
-              </p>
+              {isDisplayComeOn && (
+                <p className="mt-2 text-center text-sm tracking-[0.12em] text-red-500">
+                  {texts[index]}
+                </p>
+              )}
             </>
           )}
         </article>
