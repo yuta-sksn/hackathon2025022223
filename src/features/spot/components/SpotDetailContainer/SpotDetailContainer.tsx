@@ -108,6 +108,13 @@ export default function SpotDetailContainer() {
     return 10 >= nowDistanceInt && nowDistanceInt >= 0;
   }, [nowDistance]);
 
+  const isDisplayComeOn = useMemo(() => {
+    const nowDistanceInt = Math.round(nowDistance);
+    console.log(nowDistanceInt);
+    console.log(10 >= nowDistanceInt);
+    return 15 >= nowDistanceInt && nowDistanceInt > 10;
+  }, [nowDistance]);
+
   // スタンプ情報を API から購読
   const {
     data: stamp,
@@ -164,6 +171,21 @@ export default function SpotDetailContainer() {
 
     notify();
   };
+
+  const texts = [
+    '近くにあるよ！',
+    'もう少し近づいて！',
+    'あと少しでナイスニッチ！',
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -238,15 +260,20 @@ export default function SpotDetailContainer() {
           </div>
           {/* スタンプ取得ボタン */}
           {user && (
-            <div className="flex justify-center">
-              <button
-                className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white disabled:opacity-50"
-                onClick={useHandlePushStamp}
-                disabled={stamp?.isExistStamp || !canPush}
-              >
-                {stamp?.isExistStamp ? '取得済み' : 'スタンプ取得'}
-              </button>
-            </div>
+            <>
+              <div className="flex justify-center">
+                <button
+                  className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white disabled:opacity-50"
+                  onClick={useHandlePushStamp}
+                  disabled={stamp?.isExistStamp || !canPush}
+                >
+                  {stamp?.isExistStamp ? '取得済み' : 'スタンプ取得'}
+                </button>
+              </div>
+              <p className="mt-2 text-center text-sm tracking-[0.12em] text-red-500">
+                {texts[index]}
+              </p>
+            </>
           )}
         </article>
       )}
