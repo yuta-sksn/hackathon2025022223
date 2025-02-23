@@ -13,6 +13,9 @@
     "format": "prettier --write './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@turf/distance": "^7.2.0",
+    "@turf/helpers": "^7.2.0",
+    "@turf/turf": "^7.2.0",
     "firebase": "^11.3.1",
     "html-react-parser": "^5.2.2",
     "leaflet": "^1.9.4",

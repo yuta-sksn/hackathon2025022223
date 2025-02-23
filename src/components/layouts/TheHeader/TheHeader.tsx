@@ -4,6 +4,7 @@ import { doLogout } from '@/features/auth/api/auth';
 import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import React from 'react';
 import { useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -148,7 +149,8 @@ const TheHeader = () => {
       >
         <ul className="flex flex-col justify-center text-center text-sm sm:flex-row sm:text-left">
           {navMenuItems.map((item, index) => {
-            if (item.href.includes('login') && user) return <></>;
+            if (item.href.includes('login') && user)
+              return <React.Fragment key={index}></React.Fragment>;
 
             return (
               <li

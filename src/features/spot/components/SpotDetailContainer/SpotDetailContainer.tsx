@@ -3,13 +3,17 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
 import { Pagination, Mousewheel, EffectCube } from 'swiper/modules';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSyncSpot from '../../api/useSyncSpot';
 import { useParams } from 'next/navigation';
 import usePostStamp from '@/features/stamp/api/usePostStamp';
 import { useAuthContext } from '@/features/auth/components/AuthProvider/AuthProvider';
 import useSyncStamp from '@/features/stamp/api/useSyncStamp';
 import { toast } from 'react-toastify';
+import distance from '@turf/distance';
+import { point } from '@turf/helpers';
+import useSyncSpots from '../../api/useSyncSpots';
+import { SpotObject } from '../../types';
 
 export default function SpotDetailContainer() {
   const { spot_id: spotId } = useParams<{ spot_id: string }>();
@@ -45,6 +49,47 @@ export default function SpotDetailContainer() {
     mutate: useSyncSpotMutate,
     // @ts-ignore
   } = useSyncSpot(user ? user.accessToken : null, Number(spotId));
+
+  const {
+    data: spots,
+    error: useSyncSpotsError,
+    isLoading: useSyncSpotsIsLoading,
+  } = useSyncSpots(
+    // @ts-ignore
+    user ? user.accessToken : null,
+    10,
+    1,
+    '',
+  );
+
+  const filteredSpot = useMemo(() => {
+    if (!spot || !spots) return null;
+    return spots.nicheSpots.filter((s) => spot.id === s.id)[0];
+  }, [spot, spots]);
+
+  const nowDistance = useMemo((): number => {
+    if (
+      !latitude ||
+      !longitude ||
+      !filteredSpot ||
+      !(filteredSpot as unknown as SpotObject).longitude ||
+      !(filteredSpot as unknown as SpotObject).latitude
+    )
+      return -1000;
+    const filteredSpotLng = (filteredSpot as unknown as SpotObject).longitude;
+    const filteredSpotLat = (filteredSpot as unknown as SpotObject).latitude;
+    const myPoint = point([longitude, latitude]);
+    const spotPoint = point([filteredSpotLng, filteredSpotLat]);
+    return distance(myPoint, spotPoint, { units: 'meters' });
+  }, [latitude, longitude, filteredSpot]);
+
+  // 10m 以下 0m 以上でスタンプを押せるように
+  const canPush = useMemo(() => {
+    const nowDistanceInt = Math.round(nowDistance);
+    console.log(nowDistanceInt);
+    console.log(10 >= nowDistanceInt);
+    return 10 >= nowDistanceInt && nowDistanceInt >= 0;
+  }, [nowDistance]);
 
   // スタンプ情報を API から購読
   const {
@@ -180,7 +225,7 @@ export default function SpotDetailContainer() {
               <button
                 className="flex h-10 items-center justify-center rounded-lg bg-blue-500 px-16 text-white disabled:opacity-50"
                 onClick={useHandlePushStamp}
-                disabled={stamp?.isExistStamp}
+                disabled={stamp?.isExistStamp || !canPush}
               >
                 {stamp?.isExistStamp ? '取得済み' : 'スタンプ取得'}
               </button>
