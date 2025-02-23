@@ -49,9 +49,26 @@ export default function SearchSpotsContainer() {
   };
 
   useEffect(() => {
-    setInterval(() => {
-      getLocation();
-    }, 3000);
+    if (!navigator.geolocation) {
+      console.error('Geolocation is not supported by your browser.');
+      return;
+    }
+
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        setPosition(position);
+      },
+      (err) => {
+        console.error(err.message);
+      },
+      {
+        enableHighAccuracy: true, // 高精度な位置情報を取得
+        timeout: 10000, // タイムアウト
+        maximumAge: 0, // キャッシュを使わず毎回取得
+      },
+    );
+
+    return () => navigator.geolocation.clearWatch(watchId);
   }, []);
 
   const [isSearched, setIsSearched] = useState(false);
