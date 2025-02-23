@@ -162,9 +162,9 @@ export default function SpotDetailContainer() {
             {/* スタンプ */}
             <div className="flex size-16 items-center justify-center rounded-full border">
               <img
-                src={'/images/ashiato.svg'}
+                src={'/images/kabusan_smile.png'}
                 alt={'スタンプ'}
-                className={`w-auto transition-opacity duration-300 ${stamp?.isExistStamp ? 'h-3/4 !opacity-100' : 'h-[500%] opacity-0'}`}
+                className={`w-auto transition-opacity duration-300 ${stamp?.isExistStamp ? 'h-full !opacity-100' : 'h-[500%] opacity-0'}`}
               ></img>
             </div>
           </div>
